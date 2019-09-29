@@ -41,7 +41,8 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
-
+  float ComputeNIS(Eigen::VectorXd z_pred, Eigen::VectorXd z_meas, Eigen::MatrixXd S);
+  
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
 
@@ -95,6 +96,9 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
+  // Previous Timestamp
+  int64_t previousTimestamp;
 };
 
 #endif  // UKF_H
